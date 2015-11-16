@@ -5,7 +5,7 @@ node_js:
   
 before_install:
   - npm install -g mocha
-  - apache-cassandra-2.2.3/bin/cassandra -f
+  
 
   
 
