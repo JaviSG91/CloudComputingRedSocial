@@ -12,7 +12,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "cassandra":"apache-cassandra-2.2.3/bin/cassandra -f"
+
   },
   "repository": {
     "type": "git",
