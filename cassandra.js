@@ -10,7 +10,7 @@ Mensajeria.DevuelveNombre = function(req,res){
 	var query = 'SELECT nombre FROM Usuarios where username=?';
 	var params = [req];
 	client.execute(query,params,{prepare: true}, function(err, result) {
-	  assert.equal(result.rows[0].nombre,'Javier');
+	 
 	  if(err)
 		throw err;
 	  else{
