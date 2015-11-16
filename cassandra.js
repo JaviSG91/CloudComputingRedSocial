@@ -3,7 +3,8 @@ var assert = require('assert');
 var async = require('async');
  //Connect to the cluster
 var Mensajeria=[];
-var client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'mykeyspace'});
+var cql = require('node-cassandra-cql');
+var client = new cql.Client({hosts: ['host1', 'host2'], keyspace: 'mykeyspace'});
 
 
 Mensajeria.DevuelveNombre = function(req,res){
