@@ -1,5 +1,5 @@
 {
-  "name": "redsocial",
+  "name": "cloudcomputingredsocial",
   "version": "1.0.0",
   "description": "Se plantea crear una red social como plataforma Web destinada para que los usuarios se diviertan con múltiples contenidos basados en juegos.",
   "main": "cassandra.js",
@@ -8,23 +8,28 @@
   },
   "dependencies": {
     "async": "^1.5.0",
-    "cassandra-driver": "^2.2.2"
+    "cassandra-driver": "^2.2.2",
+    "node": "^0.0.0",
+    "heroku": "^0.1.3",
+    "foreman": "^1.4.1",
+    "node-cassandra-cql": "^0.4.4",
+    "supertest": "^1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  },
   "scripts": {
     "test": "mocha",
-    "cassandra": "apache-cassandra-2.2.3/bin/cassandra -f"
+    "start": "node cassandra.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JaviSG91/CloudComputingRedSocial.git"
   },
   "keywords": [
-    "red",
-    "social",
-    "mensajeria"
+    "cc"
   ],
-  "author": "JaviSG91",
+  "author": "javisg91",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JaviSG91/CloudComputingRedSocial/issues"
