@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>cassandra.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>cassandra.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> upsertSong = <span class="hljs-string">'INSERT INTO simplex.usuarios (id, nombre, apellidos)  '</span>
+    + <span class="hljs-string">'VALUES(?, ?, ?, ?, ?, ?);'</span>;
+<span class="hljs-keyword">var</span> getSongById = <span class="hljs-string">'SELECT * FROM keysp.usuarios WHERE username = ?;'</span>;
+<span class="hljs-keyword">var</span> contador = <span class="hljs-string">'SELECT COUNT(*) FROM keysp.usuarios;'</span>;
+
+
+<span class="hljs-keyword">var</span> cassandra = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cassandra-driver'</span>);
+<span class="hljs-keyword">var</span> assert = <span class="hljs-built_in">require</span>(<span class="hljs-string">'assert'</span>);
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">async</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'async'</span>);
+<span class="hljs-keyword">var</span> express=<span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>); 
+<span class="hljs-keyword">var</span> app = express();
+<span class="hljs-keyword">var</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>);
+app.use(bodyParser.json());
+
+<span class="hljs-keyword">var</span> client = <span class="hljs-keyword">new</span> cassandra.Client( {contactPoints: [<span class="hljs-string">'127.0.0.1'</span>] } );
+client.set
+client.connect(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, result</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Connected.'</span>);
+});
+
+app.set(<span class="hljs-string">'ip'</span>, process.env.IP|| <span class="hljs-string">'0.0.0.0'</span>);
+app.set(<span class="hljs-string">'port'</span>, (process.env.PORT || <span class="hljs-number">5000</span>));
+
+app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    res.send(<span class="hljs-string">'Bienvenido'</span>);
+     
+});
+
+
+app.post(<span class="hljs-string">'/keyspace'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    <span class="hljs-keyword">var</span> result=<span class="hljs-string">""</span>;
+    client.execute(<span class="hljs-string">"CREATE KEYSPACE IF NOT EXISTS keysp WITH replication "</span> + 
+                   <span class="hljs-string">"= {'class' : 'SimpleStrategy', 'replication_factor' : 3};"</span>,
+                   afterExecution(<span class="hljs-string">'Error: '</span>, <span class="hljs-string">'Keyspace created.'</span>, res));
+    res.send(<span class="hljs-string">"keyspace creado"</span>);
+});
+
+app.post(<span class="hljs-string">'/tables'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    <span class="hljs-keyword">async</span>.parallel([
+        <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">next</span>) </span>{
+            client.execute(<span class="hljs-string">'CREATE TABLE IF NOT EXISTS keysp.usuarios ('</span> +
+                <span class="hljs-string">'username uuid PRIMARY KEY,'</span> +
+                <span class="hljs-string">'nombre text,'</span> +
+                <span class="hljs-string">'apellido text,'</span> +
+                <span class="hljs-string">');'</span>,
+                next);
+        }   
+    ], afterExecution(<span class="hljs-string">'Error: '</span>, <span class="hljs-string">'Tables created.'</span> , res));
+	res.send(<span class="hljs-string">"tablas creadas"</span>);
+});
+
+app.post(<span class="hljs-string">'/user'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    <span class="hljs-keyword">var</span> id = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> ( ! req.body.hasOwnProperty(<span class="hljs-string">'username'</span>)) {
+        id = cassandra.types.uuid();
+    } <span class="hljs-keyword">else</span> {
+        id = req.body.username;
+    }
+    client.execute(upsertSong,
+        [id, req.body.nombre, req.body.apellido],
+        afterExecution(<span class="hljs-string">'Error: '</span>, <span class="hljs-string">'Usuario '</span> + req.body.nombre + <span class="hljs-string">' upserted.'</span>, res));
+    res.send(id + <span class="hljs-string">" is stored"</span>);
+});
+
+<span class="hljs-comment">/*app.get('/userb', function(req, res) {
+    var d;
+    creaKey(d);
+    client.execute("SELECT COUNT(*) FROM keysp.usuarios", function(err, result) {
+        if (err) {
+	    res.status(404).send({ msg : err });
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>res.status(404).send({ msg : ‘User not found.’ });</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        } else {
+            res.json(result);        }
+    });
+
+});*/
+
+function afterExecution(errorMsessage, successMessage) {
+    return function(err, result) {
+        if (err) {
+            return "error";
+        } else {
+            return "bien";
+        }
+    }
+}
+
+
+var server = app.listen(app.get('port'), function() {
+    console.log('Listening on port %d', server.address().port);
+});
+
+module.exports = app;
+
+
+/*var cassandra = require('cassandra-driver');
+var assert = require('assert');
+var async = require('async');
+var express=require('express'); 
+var app = express(); 
+
+app.set('ip', process.env.IP|| '0.0.0.0');
+app.set('port', (process.env.PORT || 5000));
+
+
+app.get('/', function (req, res) { 
+	var client = new cassandra.Client({contactPoints: ['127.0.0.1','127.0.0.2'], keyspace: 'mykeyspace'});
+	
+	 client.execute("SELECT nombre FROM Usuarios where username='javisg'", function (err, result) {
+           if (!err){
+               if ( result.rows.length &gt; 0 ) {
+                   var user = result.rows[0];
+                   res.send(user.nombre);
+               } else {
+                   res.send("nada");
+               }
+           }
+	   else
+		res.send("error");
+ 
+       });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>res.send(‘Bienvenido’);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Connect to the cluster</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>var Mensajeria=[];
+var client = new cassandra.Client({contactPoints: ['127.0.0.1','127.0.0.2'], keyspace: 'mykeyspace'});
+
+
+Mensajeria.DevuelveNombre = function(req,res){
+	var query = 'SELECT nombre FROM Usuarios where username=?';
+	var params = [req];
+	client.execute(query,params,{prepare: true}, function(err, result) {
+	 
+	  if(err)
+		throw err;
+	  else{
+		res(null,result.rows[0]);
+	  	console.log('got username ' + result.rows[0].nombre);
+	  }
+	});
+}
+
+app.listen(app.get('port'), function() {
+  console.log('Puerto:', app.get('port'));
+});
+module.exports = app;*/</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
