@@ -17,5 +17,5 @@ En cuanto al entorno, usaré [Node.js](https://nodejs.org/en/). Node.js es un en
 
 <h2>Despliegue e instalación</h2>
 
-El despliegue en Heroku ya se encuentra [disponible](https://stark-fjord-3673.herokuapp.com/) 
+El despliegue en Heroku ya se encuentra [disponible](https://stark-fjord-3673.herokuapp.com/)   
 El manual con todos los pasos se encuentra en el siguiente [documento](https://stark-fjord-3673.herokuapp.com/)
