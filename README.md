@@ -15,4 +15,7 @@ Como base de datos usaré [Apache Cassandra](http://cassandra.apache.org/), una 
 
 En cuanto al entorno, usaré [Node.js](https://nodejs.org/en/). Node.js es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor (pero no limitándose a ello) basado en el lenguaje de programación ECMAScript. La gran ventaja de este entorno es que resulta perfecto para desarrollar aplicaciones escalables en la red.
 
-El despliegue en Heroku ya se encuentra [disponible](https://stark-fjord-3673.herokuapp.com/)
+<h2>Despliegue e instalación</h2>
+
+El despliegue en Heroku ya se encuentra [disponible](https://stark-fjord-3673.herokuapp.com/) 
+El manual con todos los pasos se encuentra en el siguiente [documento](https://stark-fjord-3673.herokuapp.com/)
