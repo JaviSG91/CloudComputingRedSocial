@@ -1,5 +1,7 @@
 # Submódulo Red Social: sistema de mensajería privada 
 
+[![](https://travis-ci.org/JaviSG91/CloudComputingRedSocial.svg?branch=master)](https://travis-ci.org/JaviSG91/CloudComputingRedSocial)
+
 Se plantea crear una red social como plataforma Web destinada para que los usuarios se diviertan con múltiples contenidos basados en juegos.
 
 Dentro del contexto de red social, me encargaré de la creación de un subsistema de mensajería privada y segura entre los usuarios que se encuentren registrados. La mensajería no se da a tiempo real (no se trata de un chat) si no que constituirá una especie de sistema de correo entre los usuarios.
