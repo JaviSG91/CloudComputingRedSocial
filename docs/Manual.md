@@ -1,6 +1,7 @@
-# Manual de despliegue de aplicación en PaaS e instalación
+<h1>Manual de despliegue de aplicación en PaaS e instalación</h1>
 
-<h2>Despliegue<h2>
+<h2>Despliegue</h2>  
+
 Estos son los pasos a seguir para desplegar la aplicación en Heroku:
 
 1. Nos registramos dentro de la página de [Heroku](https://dashboard.heroku.com/)
@@ -27,23 +28,25 @@ Y dentro de [SnapCI](https://snap-ci.com/JaviSG91/CloudComputingRedSocial/branch
 
 ![](http://googledrive.com/host/0ByKPAGLB_FgcU1E3LVk2dWxsVzA/snapci3.png)
 
-<h2>Instalación<h2>
+<h2>Instalación</h2>  
 1. Clonamos el git con el comando:
-        git clone https://github.com/JaviSG91/CloudComputingRedSocial
+
+                git clone https://github.com/JaviSG91/CloudComputingRedSocial
+
 2. Es necesario descargar todas las dependencias definidas en el package.json con el comando npm install:
 
-"dependencies": {
-    "cassandra-driver": "^2.2.2",
-    "express": "^4.13.3",
-    "body-parser": "^1.14.1",
-    "node": "^0.0.0",
-    "foreman": "^1.4.1",
-    "heroku": "^0.1.3",
-    "supertest": "^1.1.0",
-    "node-cassandra-cql": "^0.4.4",
-    "async": "^1.5.0"
-  }
-
+        "dependencies": {
+         "cassandra-driver": "^2.2.2",
+         "express": "^4.13.3",
+           "body-parser": "^1.14.1",
+          "node": "^0.0.0",
+          "foreman": "^1.4.1",
+           "heroku": "^0.1.3",
+           "supertest": "^1.1.0",
+           "node-cassandra-cql": "^0.4.4",
+          "async": "^1.5.0"
+         }
+         
 3. npm start para arrancar la ejecución
 4. npm test para ejecutar los test
 
