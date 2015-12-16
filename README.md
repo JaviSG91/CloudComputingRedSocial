@@ -15,8 +15,9 @@ Como base de datos usaré [Apache Cassandra](http://cassandra.apache.org/), una 
 
 En cuanto al entorno, usaré [Node.js](https://nodejs.org/en/). Node.js es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor (pero no limitándose a ello) basado en el lenguaje de programación ECMAScript. La gran ventaja de este entorno es que resulta perfecto para desarrollar aplicaciones escalables en la red.
 
-Para integración continua he usado [Travis-CI](https://travis-ci.org/JaviSG91/CloudComputingRedSocial.svg?branch=master)  
-Para el despliegue en un PaaS he usado [Heroku](https://dashboard.heroku.com/apps/stark-fjord-3673/resources)
+Para integración continua he usado [Travis-CI](https://travis-ci.org/JaviSG91/CloudComputingRedSocial.svg?branch=master) una herramienta que te permite conectar tu repositorio de Github y probar después de cada push que hagas, regenerando el proyecto. Soporta múltiples lenguajes entre ellos, Node.js.
+
+Para el despliegue en un PaaS he usado [Heroku](https://dashboard.heroku.com/apps/stark-fjord-3673/resources), una plataforma como servicio de computación en la Nube que soporta distintos lenguajes de programación.
 
 <h2>Despliegue e instalación</h2>
 
