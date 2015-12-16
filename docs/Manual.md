@@ -22,4 +22,11 @@ Estos son los pasos a seguir para desplegar la aplicación en Heroku:
 
 El enlace a la página de la aplicación es [este](https://stark-fjord-3673.herokuapp.com/)
 
-Una vez hecho esto, se configura el despliegue automático a Heroku usando Snap CI en este caso. Y en caso de hacerlo bien debe aparecer 
+Una vez hecho esto, se configura el despliegue automático a Heroku usando Snap CI en este caso. Y en caso de hacerlo bien debe aparecer ambos webhooks [aquí](https://github.com/JaviSG91/CloudComputingRedSocial/settings/hooks)
+
+Y dentro de [SnapCI](https://snap-ci.com/JaviSG91/CloudComputingRedSocial/branch/master) vemos cómo pasa las pruebas:
+
+![](http://googledrive.com/host/0ByKPAGLB_FgcU1E3LVk2dWxsVzA/snapci3.png)
+
+
+Para más información ver [Readme](https://github.com/JaviSG91/CloudComputingRedSocial/blob/master/README.md)
