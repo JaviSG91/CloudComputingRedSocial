@@ -21,4 +21,4 @@ Para el despliegue en un PaaS he usado [Heroku](https://dashboard.heroku.com/app
 <h2>Despliegue e instalación</h2>
 
 El despliegue en Heroku ya se encuentra [disponible](https://stark-fjord-3673.herokuapp.com/)   
-El manual con todos los pasos se encuentra en el siguiente [documento](https://stark-fjord-3673.herokuapp.com/)
+El manual con todos los pasos se encuentra en el siguiente [documento](https://github.com/JaviSG91/CloudComputingRedSocial/blob/master/docs/Manual.md)
