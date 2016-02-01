@@ -1,5 +1,5 @@
 
-FROM    FROM debian:jessie-backports
+FROM debian:jessie-backports
 MAINTAINER Javier Salido Gómez <javisago91@gmail.com> Version: 1.0 
  
 
