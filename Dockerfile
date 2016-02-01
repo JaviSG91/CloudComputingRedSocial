@@ -34,9 +34,7 @@ ENV CASSANDRA_VERSION 3.2
  
 ENV CASSANDRA_CONFIG /etc/cassandra 
 
- 
-COPY docker-entrypoint.sh /docker-entrypoint.sh 
-ENTRYPOINT ["/docker-entrypoint.sh"] 
+
 
  
 RUN mkdir -p /var/lib/cassandra "$CASSANDRA_CONFIG" \ 
