@@ -46,5 +46,3 @@ VOLUME /var/lib/cassandra
 EXPOSE 7000 7001 7199 9042 9160 
 CMD ["cassandra", "-f"] 
 
-RUN git clone https://github.com/JaviSG91/CloudComputingRedSocial.git /home/CloudComputingRedSocial
-RUN cd /home/CloudComputingRedSocial && npm install 
