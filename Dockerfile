@@ -7,5 +7,5 @@ RUN apt-get -y install wget
 RUN wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash - 
 RUN sudo apt-get install -y git nodejs 
 RUN node -v 
-RUN git clone https://github.com/javisg/CloudComputingRedSocial.git /home/CloudComputingRedSocial
+RUN git clone https://github.com/JaviSG91/CloudComputingRedSocial.git /home/CloudComputingRedSocial
 RUN cd /home/CloudComputingRedSocial && npm install 
