@@ -3,9 +3,6 @@ FROM debian:jessie-backports
 MAINTAINER Javier Salido Gómez <javisago91@gmail.com> Version: 1.0 
  
 
-RUN sudo apt-get install -y git nodejs 
-RUN node -v 
-
  
 # explicitly set user/group IDs 
 RUN groupadd -r cassandra --gid=999 && useradd -r -g cassandra --uid=999 cassandra 
