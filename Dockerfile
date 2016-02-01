@@ -3,8 +3,6 @@ FROM debian:jessie-backports
 MAINTAINER Javier Salido Gómez <javisago91@gmail.com> Version: 1.0 
  
 
-RUN apt-get -y install wget 
-RUN wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash - 
 RUN sudo apt-get install -y git nodejs 
 RUN node -v 
 
